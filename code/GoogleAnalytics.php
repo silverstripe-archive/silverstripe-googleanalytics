@@ -5,7 +5,7 @@
  * _config.php allows this class to modify the cms fields of all pages
  * and to call a function on every page load.
  */
-class GoogleAnalytics extends Object {
+class GoogleAnalytics extends DataObjectDecorator {
 
 	/**
 	 * Returns a description of the indexing status of the current page.
@@ -34,8 +34,7 @@ class GoogleAnalytics extends Object {
 	/**
 	 * Modifies the main cms for all pages to include a description of their status in search engines
 	 */
-	static function getCMSFields($fields) {
-
+	public function updateCMSFields($fields) {
 		$fields->addFieldToTab("Root.Reports.Index",new LiteralField("IndexStatus",self::getIndexStatus()));
 
 		return $fields;
@@ -45,7 +44,7 @@ class GoogleAnalytics extends Object {
 	 * Run on every page load to inject google analyics code if set, and to record
 	 * search engine crawls.
 	 */
-	static function Initialize() {
+	static function initialize() {
 		
 		/* Record Crawlers */
 		$page = Director::currentURLSegment();

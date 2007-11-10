@@ -1,12 +1,9 @@
 <?php
-/**
- * Register a callback function for the cms of all descendents of Page.
- */
-Page::ExtendCMS(array("GoogleAnalytics","getCMSFields"));
+DataObject::add_extension('SiteTree', 'GoogleAnalytics');
 
 /**
  * Register a callback function for all page views.
  */
-Director::ExtendSite(array("GoogleAnalytics","Initialize"));
+Director::add_callback(array("GoogleAnalytics","initialize"));
 
 ?>
