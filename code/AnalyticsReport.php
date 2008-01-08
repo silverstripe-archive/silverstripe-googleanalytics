@@ -12,21 +12,24 @@ class AnalyticsReport extends SideReport {
 	 * javascript.
 	 */
 	function title() {
+		$t1 = _t('AnalyticsReport.LOADINGFORM','Loading Form...');
+		$t2 = _t('AnalyticsReport.SAVING','Saving...');
+		$t3 = _t('AnalyticsReport.SAVED','Saved!');
 		$script = <<<EOF
 		function viewGoogleAnalytics() {
 			$('Form_EditForm').innerHTML = "<iframe name='analytics' src='http://analytics.google.com/' border='0' style='width:100%; height:100%;'></iframe>";
 		}
 		function setupGoogleAnalytics() {
-			statusMessage('Loading Form...');
+			statusMessage('{$t1}');
 			$('Form_EditForm').loadURLFromServer('admin/sidereport/GoogleAnalytics/?mode=display');
 		}
 		function saveGoogleAnalytics(form) {
-			statusMessage('Saving...');
+			statusMessage('{$t2}');
 			var text = form.Analytics.value.split('"');
 			var urchin = text[text.length -2];
 			
 			$('Form_EditForm').loadURLFromServer('admin/sidereport/GoogleAnalytics/?mode=save&urchin='+urchin);
-			statusMessage('Saved!',"good");
+			statusMessage('{$t3}',"good");
 			return false;
 		}
 EOF;
@@ -45,9 +48,9 @@ EOF;
 	function getHTML() {
 		$result = "<ul class=\"$this->class\">\n";
 		$result .= "<li>\n";
-		$result .= "<span onclick='viewGoogleAnalytics();'>View Google Analytics</span>\n";
+		$result .= "<span onclick='viewGoogleAnalytics();'>" . _t('AnalyticsReport.VIEWANALYTICS','View Google Analytics') . "</span>\n";
 		$result .= "</li><li>\n";
-		$result .= "<span onclick='setupGoogleAnalytics();'>Setup Analytics</span>\n";
+		$result .= "<span onclick='setupGoogleAnalytics();'>" . _t('AnalyticsReport.SETUPANALYTICS','Setup Analytics') . "</span>\n";
 		$result .= "</li>\n";
 		$result .= "</ul>\n";
 		return $result;
