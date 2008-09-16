@@ -1,12 +1,23 @@
-Google Analytics Module For Silverstripe.                                                                                                   
+############################################
+Google Analytics Module
+############################################
 
-Installation
+# Maintainer Contact
+Sam Minnée (Nickname: sminnee)
+<sam (at) silverstripe (dot) com>
 
-	1. Copy the 'googleAnalytics' folder to the base of your silverstripe installation.
+# Requirements
+This module does not run under the 2.0.2 version of silverstripe, and requires the 2.1 release.  This release contains
+code that allows modules to modify your existing site with ease.
+
+# Documentation
+http://doc.silverstripe.com/doku.php?id=modules:newsletter
+
+# Installation Instructions
+1. Copy the 'googleAnalytics' folder to the base of your silverstripe installation.
+2. Navigate to /db/build to create the table for this module (eg. http://mysite/db/build)
 	
-	2. Navigate to /db/build to create the table for this module (eg. http://mysite/db/build)
-	
-Usage
+# Usage
 
 	1. Analytics
 	
@@ -22,8 +33,3 @@ Usage
 		A new piece of data has been added to every page in your silverstripe installation.  In the main CMS, there is now
 		an 'Index' tab under the 'Reports' tab.  This provides a view of which search engines have indexed each page on your
 		site, and if the latest version of your pages has been indexed by search engines.
-		
-Requirements
-
-	This module does not run under the 2.0.2 version of silverstripe, and requires the 2.1 release.  This release contains
-	code that allows modules to modify your existing site with ease.
