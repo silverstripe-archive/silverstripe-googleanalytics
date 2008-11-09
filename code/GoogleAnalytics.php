@@ -11,7 +11,7 @@ class GoogleAnalytics extends DataObjectDecorator {
 	 * Returns a description of the indexing status of the current page.
 	 */
 	static function getIndexStatus() {
-		$controller = Controller::currentController();
+		$controller = Controller::curr();
 		if(method_exists($controller,"currentPage") && method_exists($controller->currentPage(),"ElementName"))
 			$page = $controller->currentPage()->ElementName();
 		else
@@ -47,7 +47,7 @@ class GoogleAnalytics extends DataObjectDecorator {
 	static function initialize() {
 		
 		/* Record Crawlers */
-		$page = Director::currentURLSegment();
+		$page = Controller::curr()->URLSegment;
 		
 		$crawlers = CrawlerStats::GetFor($page);
 		
@@ -57,7 +57,7 @@ class GoogleAnalytics extends DataObjectDecorator {
 		
 		/* Launch Analytics */
 		$urchinid = DataObject::get_one("CrawlerStats","Page = '!!AnalyticsUrchinID'");
-		if($urchinid->Data[0]=="U") {
+		if($urchinid && $urchinid->Data[0]=="U") {
 			self::addAnalytics($urchinid->Data);
 		}
 	}
@@ -94,7 +94,7 @@ END;
 	 */
 	function currentJS() {
 		$uid = DataObject::get_one("CrawlerStats", "Page = '!!AnalyticsUrchinID'");
-		if($uid->Data[0]=="U") {
+		if($uid && $uid->Data[0]=="U") {
 			$string = "<script src='http://www.google-analytics.com/urchin.js' type='text/javascript'></script>\n";
 			$string .= "<script type='text/javascript'>\n";
 			$string .= '_uacct = "' . $uid->Data . '";';
