@@ -1,9 +1,10 @@
 <?php
-
-/*
+/**
  * This class ties the module into the main interface.
  * _config.php allows this class to modify the cms fields of all pages
  * and to call a function on every page load.
+ *
+ * @package googleanalytics
  */
 class GoogleAnalytics extends DataObjectDecorator {
 
@@ -45,7 +46,6 @@ class GoogleAnalytics extends DataObjectDecorator {
 	 * search engine crawls.
 	 */
 	static function initialize() {
-		
 		/* Record Crawlers */
 		$page = Controller::curr()->URLSegment;
 		
@@ -61,31 +61,26 @@ class GoogleAnalytics extends DataObjectDecorator {
 			self::addAnalytics($urchinid->Data);
 		}
 	}
-	
-	
+
 	/**
 	 * Add google analytics javascript code to a page
 	 */
 	static function addAnalytics($uid) {
-		Requirements::insertHeadTags("<script src='http://www.google-analytics.com/urchin.js' type='text/javascript'></script>");
+
+		Requirements::insertHeadTags("<script src='http://www.google-analytics.com/ga.js' type='text/javascript'></script>", "GA");
 		$script = <<<END
-			if (document.addEventListener) {
-				document.addEventListener ("load",function() {urchinTracker();},false);
-			} else if (document.attachEvent) {
-				document.attachEvent ("onload",function() {urchinTracker();});
-			} else {
-				oldLoader = document.onload;
-				document.onload = function() {oldLoader(); urchinTracker();};
-			}
-			_uacct = "$uid";
+				try {
+					var pageTracker = _gat._getTracker("$uid");
+					pageTracker._trackPageview();
+				} catch(err) {}
 END;
-		Requirements::customScript($script, "urchin");
+		Requirements::customScript($script, "ga");
 	}
 	
 	function link($action = null) {
 			return "admin/sidereport/GoogleAnalytics/?mode=$action";
 	}
-	
+
 	/**
 	 * Provide the current analytics snippit as google provides it
 	 * (The snippit is modifies when we actually include it on the page (the addAnalytics function))
@@ -95,10 +90,10 @@ END;
 	function currentJS() {
 		$uid = DataObject::get_one("CrawlerStats", "Page = '!!AnalyticsUrchinID'");
 		if($uid && $uid->Data[0]=="U") {
-			$string = "<script src='http://www.google-analytics.com/urchin.js' type='text/javascript'></script>\n";
+			$string = "<script src='http://www.google-analytics.com/ga.js' type='text/javascript'></script>\n";
 			$string .= "<script type='text/javascript'>\n";
-			$string .= '_uacct = "' . $uid->Data . '";';
-			$string .= "\nurchinTracker();\n";
+			$string .= 'var pageTracker = _gat._getTracker("' . $uid->Data . '");';
+			$string .= "\npageTracker._trackPageview();\n";
 			$string .= "</script>";
 			return $string;
 		}

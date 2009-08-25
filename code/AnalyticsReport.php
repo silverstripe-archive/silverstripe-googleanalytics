@@ -2,6 +2,8 @@
 /**
  * This class provides the side report in the main cms, and contains the front-end
  * code for the cms side-report items.
+ *
+ * @package googleanalytics
  */
 class AnalyticsReport extends SideReport {
 

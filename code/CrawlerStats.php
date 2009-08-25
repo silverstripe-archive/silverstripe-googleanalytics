@@ -6,6 +6,8 @@
  *
  * Other engines can be added by modifying the spiders property in the form of
  * name => user-agent-string
+ *
+ * @package googleanalytics
  */
 class CrawlerStats extends DataObject {
 	static $db = array(

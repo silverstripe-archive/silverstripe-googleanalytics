@@ -1,4 +1,5 @@
 <?php
+
 DataObject::add_extension('SiteTree', 'GoogleAnalytics');
 
 /**
