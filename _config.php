@@ -5,6 +5,7 @@ DataObject::add_extension('SiteTree', 'GoogleAnalytics');
 /**
  * Register a callback function for all page views.
  */
-Director::add_callback(array("GoogleAnalytics","initialize"));
+Object::add_extension('ContentController', 'CrawlerStatsDecorator');
+Object::add_extension('SiteConfig', 'AnalyticsSetupDecorator');
 
 ?>

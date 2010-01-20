@@ -57,7 +57,7 @@ class CrawlerStats extends DataObject {
 		$data = unserialize($this->Data);
 		
 		foreach (array_keys(self::$spiders) as $index => $display) {
-			if(!$data[$index]) {continue;}
+			if(!isset($data[$index])) {continue;}
 			$result .= "<tr><td><img src='googleanalytics/images/$display.png' alt='$display' style='float:left;padding-right:2px;'/>";
 			$result .= $display;
 			$result .= "</td><td>";
