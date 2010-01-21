@@ -34,10 +34,8 @@ class AnalyticsSetupDecorator extends DataObjectDecorator {
 		$pattern = '/_gat\._getTracker \( " (UA[^"]+) "/x';
 		if (preg_match($pattern, $script, &$matches)) {
 			$this->owner->GoogleAnalyticsCode = $matches[1];
-			$string = "<script type='text/javascript'>\n";
-			$string .= 'var pageTracker = _gat._getTracker("' . $matches[1] . '");';
+			$string = 'var pageTracker = _gat._getTracker("' . $matches[1] . '");';
 			$string .= "\npageTracker._trackPageview();\n";
-			$string .= "</script>";
 			$this->owner->GoogleAnalyticsScript = $string;
 		} else {
 			Debug::log("couldn't match $pattern  against $script");
