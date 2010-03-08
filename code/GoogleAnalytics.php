@@ -18,7 +18,7 @@ class GoogleAnalytics extends DataObjectDecorator {
 		else
 			$page = "unknown";
 		
-		$indexResults = DataObject::get_one("CrawlerStats","Page = '$page'");
+		$indexResults = DataObject::get_one("CrawlerStats","\"Page\" = '$page'");
 		
 		$lastVersion = strtotime("now");
 		

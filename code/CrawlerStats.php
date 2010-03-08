@@ -78,7 +78,7 @@ class CrawlerStats extends DataObject {
 	 * if the page has never been crawled, a new object is created
 	 */
 	public static function GetFor($page) {
-		$try = DataObject::get_one("CrawlerStats","Page = '$page'");
+		$try = DataObject::get_one("CrawlerStats","\"Page\" = '$page'");
 		if($try)
 			return $try;
 			
