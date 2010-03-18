@@ -36,6 +36,9 @@ class GoogleAnalytics extends DataObjectDecorator {
 	 * Modifies the main cms for all pages to include a description of their status in search engines
 	 */
 	public function updateCMSFields($fields) {
+		if (!$fields->fieldByName('Root.Reports')) {
+			$fields->addFieldToTab("Root",new TabSet('Reports'));
+		}
 		$fields->addFieldToTab("Root.Reports.Index",new LiteralField("IndexStatus",self::getIndexStatus()));
 
 		return $fields;
