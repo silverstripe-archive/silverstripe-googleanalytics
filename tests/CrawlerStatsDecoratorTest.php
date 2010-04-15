@@ -17,7 +17,7 @@ class CrawlerStatsDecoratorTest extends FunctionalTest {
 	 */
 	function testOnAfterInit() {
 		$page = $this->objFromFixture('Page', 'testpage1');
-		$stats = DataObject::get_one('CrawlerStats', "Page = '{$page->URLSegment}'");
+		$stats = DataObject::get_one('CrawlerStats', "\"Page\" = '{$page->URLSegment}'");
 		$this->assertEquals($stats, false, "Obtained CrawlerStats when fixture should have none");
 
 		// Fake the user agent
@@ -25,7 +25,7 @@ class CrawlerStatsDecoratorTest extends FunctionalTest {
 		$response = $this->get("{$page->URLSegment}");
 		$this->assertEquals($response->getStatusCode(), 200, "Failed to retrieve the URL  '{$page->URLSegment}'");
 
-		$stats = DataObject::get_one('CrawlerStats', "Page = '{$page->URLSegment}'");
+		$stats = DataObject::get_one('CrawlerStats', "\"Page\" = '{$page->URLSegment}'");
 		if ($stats) {
 			$data = unserialize($stats->Data);
 			$this->assertTrue(is_array($data) && isset($data[0]), "No relevant stats were found after page visit");
