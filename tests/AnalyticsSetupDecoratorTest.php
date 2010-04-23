@@ -26,12 +26,7 @@ pageTracker._trackPageview();
 ENDSCRIPT;
 		$config->write();
 		$this->assertEquals($config->GoogleAnalyticsCode, 'UA-6967217-2');
-		$desiredScript = <<<ENDSCRIPT
-<script type='text/javascript'>
-var pageTracker = _gat._getTracker("UA-6967217-2");
-pageTracker._trackPageview();
-</script>
-ENDSCRIPT;
+		$desiredScript = "var pageTracker = _gat._getTracker(\"UA-6967217-2\");\npageTracker._trackPageview();\n";
 		$this->assertEquals($config->GoogleAnalyticsCode, 'UA-6967217-2');
 		$this->assertEquals($config->GoogleAnalyticsScript, $desiredScript);
 	}

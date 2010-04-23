@@ -5,7 +5,11 @@
  *
  * @package googleanalytics
  */
-class AnalyticsReport extends SideReport {
+class AnalyticsReport extends SS_Report {
+
+	function description() {
+		return 'Google analytics report';
+	}
 
 	/**
 	 * Title is called to get the name of the side report,
@@ -14,6 +18,18 @@ class AnalyticsReport extends SideReport {
 	 * javascript.
 	 */
 	function title() {
+		return "Google Analytics";
+	}
+	
+	function getCMSFields() {
+		$fields = new FieldSet(
+			new LiteralField(
+				'ReportTitle', 
+				 "<h3>{$this->title()}</h3>"
+			),
+			new LiteralField('ReportDescription', $this->description()),
+			new LiteralField('ReportContent', $this->getHTML())
+		);
 		$t1 = _t('AnalyticsReport.LOADINGFORM','Loading Form...');
 		$t2 = _t('AnalyticsReport.SAVING','Saving...');
 		$t3 = _t('AnalyticsReport.SAVED','Saved!');
@@ -27,25 +43,18 @@ class AnalyticsReport extends SideReport {
 		}
 EOF;
 		Requirements::customScript($script,"Analytics");
-		return "Analytics";
+		return $fields;
 	}
-	
-	function records() {
-		return array();
-	}
-	
-	function fieldsToShow() {
-		return array();
-	}
-	
+
 	function getHTML() {
-		$result = "<ul class=\"$this->class\">\n";
-		$result .= "<li>\n";
-		$result .= "<span onclick='viewGoogleAnalytics();' style=\"cursor:pointer\">" . _t('AnalyticsReport.VIEWANALYTICS','View Google Analytics') . "</span>\n";
-		$result .= "</li><li>\n";
-		$result .= "<span onclick='setupGoogleAnalytics();' style=\"cursor:pointer\">" . _t('AnalyticsReport.SETUPANALYTICS','Setup Analytics') . "</span>\n";
-		$result .= "</li>\n";
-		$result .= "</ul>\n";
+		$viewAnalytics = _t('AnalyticsReport.VIEWANALYTICS','View Google Analytics');
+		$setupAnalytics = _t('AnalyticsReport.SETUPANALYTICS','Setup Google Analytics');
+		$result = <<<ENDRESULT
+			<ul class="{$this->class}"
+			<li><a href="#" onclick='viewGoogleAnalytics();'>{$viewAnalytics}</a></li>
+			<li><a href="#" onclick='setupGoogleAnalytics();'>{$setupAnalytics}</a></li>
+			</ul>
+ENDRESULT;
 		return $result;
 	}
 }

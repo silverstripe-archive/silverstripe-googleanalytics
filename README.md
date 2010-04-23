@@ -5,8 +5,7 @@ Luke Hudson (nickname: silverluke)
 <luke (at) silverstripe (dot) com>
 
 ## Requirements ##
-This module does not run under the 2.0.2 version of silverstripe, and requires the 2.1 release.  This release contains
-code that allows modules to modify your existing site with ease.
+This module requires SilverStripe 2.4
 
 ## Documentation ##
 http://doc.silverstripe.com/doku.php?id=modules:newsletter

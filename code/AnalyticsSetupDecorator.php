@@ -32,13 +32,16 @@ class AnalyticsSetupDecorator extends DataObjectDecorator {
 		$script = $this->owner->GoogleAnalyticsScript;
 		$matches = array();
 		$pattern = '/_gat\._getTracker \( " (UA[^"]+) "/x';
+		if (empty($script)) {
+			return;
+		}
 		if (preg_match($pattern, $script, &$matches)) {
 			$this->owner->GoogleAnalyticsCode = $matches[1];
 			$string = 'var pageTracker = _gat._getTracker("' . $matches[1] . '");';
 			$string .= "\npageTracker._trackPageview();\n";
 			$this->owner->GoogleAnalyticsScript = $string;
 		} else {
-			Debug::log("couldn't match $pattern  against $script");
+			user_error("googleanalytics module: couldn't match '$pattern' against '$script'.  Please update the googleanalytics module");
 		}
 	}
 	

@@ -8,4 +8,6 @@ DataObject::add_extension('SiteTree', 'GoogleAnalytics');
 Object::add_extension('ContentController', 'CrawlerStatsDecorator');
 Object::add_extension('SiteConfig', 'AnalyticsSetupDecorator');
 
+SS_Report::register("ReportAdmin", "AnalyticsReport");
+
 ?>
