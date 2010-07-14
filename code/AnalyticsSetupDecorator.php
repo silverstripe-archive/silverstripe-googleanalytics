@@ -15,7 +15,7 @@ class AnalyticsSetupDecorator extends DataObjectDecorator {
 		);
 	}
 
-	function updateEditFormFields($fields) {
+	function updateCMSFields($fields) {
 		$fields->addFieldToTab('Root.GoogleAnalytics', 
 				new HeaderField("info", "Paste Google's code below to collect statistics for this site", 2));
 		$fields->addFieldToTab('Root.GoogleAnalytics', 
