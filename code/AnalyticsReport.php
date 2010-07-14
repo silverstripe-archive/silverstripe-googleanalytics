@@ -18,6 +18,22 @@ class AnalyticsReport extends SS_Report {
 	 * javascript.
 	 */
 	function title() {
+
+		$siteconfiglink = BASE_URL . '/admin/show/root#Root_GoogleAnalytics';
+		$t1 = _t('AnalyticsReport.LOADINGFORM','Loading Form...');
+		$t2 = _t('AnalyticsReport.SAVING','Saving...');
+		$t3 = _t('AnalyticsReport.SAVED','Saved!');
+		$script = <<<EOF
+		function viewGoogleAnalytics() {
+			$('Form_EditForm').innerHTML = "<iframe name='analytics' src='http://analytics.google.com/' border='0' style='width:100%; height:100%;'></iframe>";
+		}
+		function setupGoogleAnalytics() {
+			statusMessage('{$t1}');
+			window.location = '$siteconfiglink';
+		}
+EOF;
+		Requirements::customScript($script,"Analytics");
+
 		return "Google Analytics";
 	}
 	
@@ -30,19 +46,6 @@ class AnalyticsReport extends SS_Report {
 			new LiteralField('ReportDescription', $this->description()),
 			new LiteralField('ReportContent', $this->getHTML())
 		);
-		$t1 = _t('AnalyticsReport.LOADINGFORM','Loading Form...');
-		$t2 = _t('AnalyticsReport.SAVING','Saving...');
-		$t3 = _t('AnalyticsReport.SAVED','Saved!');
-		$script = <<<EOF
-		function viewGoogleAnalytics() {
-			$('Form_EditForm').innerHTML = "<iframe name='analytics' src='http://analytics.google.com/' border='0' style='width:100%; height:100%;'></iframe>";
-		}
-		function setupGoogleAnalytics() {
-			statusMessage('{$t1}');
-			window.location = '/admin/0';
-		}
-EOF;
-		Requirements::customScript($script,"Analytics");
 		return $fields;
 	}
 
