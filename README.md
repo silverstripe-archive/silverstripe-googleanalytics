@@ -1,16 +1,14 @@
 # Google Analytics Module #
 
 ## Maintainer Contact ##
-Luke Hudson (nickname: silverluke)
-<luke (at) silverstripe (dot) com>
+
+Andreas Piening (andreas at silverstripe dot com)
 
 ## Requirements ##
 This module requires SilverStripe 2.4
 
-## Documentation ##
-http://doc.silverstripe.com/doku.php?id=modules:newsletter
-
 ## Installation Instructions ##
+
 1. Copy the 'googleAnalytics' folder to the base of your silverstripe installation.
 2. Navigate to /db/build to create the table for this module (eg. http://mysite/db/build)
 	
