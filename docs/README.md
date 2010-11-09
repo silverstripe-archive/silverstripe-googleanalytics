@@ -10,7 +10,8 @@ The Google Logger injects the google analytics javascript snippet into your sour
 The Analyzer adds the GA UI to your CMS
 
 ## Requirements
- * SilverStripe 2.4 or newer
+
+ * SilverStripe 2.3 or newer (for 2.3 use the hardcode activation since SiteConfig doesn't exist in 2.3)
 
 ## DB Adapter Support
  * MySQL

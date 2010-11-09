@@ -2,8 +2,10 @@
 
 class GoogleAnalyzer extends DataObjectDecorator {
 
+	static public $sapphire_version;
+
 	// credentials for the Google Analytics API
-	static protected $pofile_id;
+	static protected $profile_id;
 	static protected $email;
 	static protected $password;
 
@@ -13,6 +15,15 @@ class GoogleAnalyzer extends DataObjectDecorator {
 				'Events' => 'GoogleLogEvent',
 			),
 		);
+	}
+
+	/**
+	 *	for legacy reasons
+	 *	@return String, version number, e.g. 2.4 or 2.3.6
+	 */
+	public static function get_sapphire_version() {
+		if(self::$sapphire_version) return self::$sapphire_version;
+		return method_exists('SiteTree', 'nested_urls') ? '2.4' : '2.3';
 	}
 
 	/**
@@ -28,7 +39,10 @@ class GoogleAnalyzer extends DataObjectDecorator {
 		
 		switch($profile) {
 			case 'SiteConfig': Object::add_extension('SiteConfig', 'GoogleConfig'); break;
-			default: self::$profile_id = $profile; self::$email = $email; self::$password = $password;
+			default:
+				self::$profile_id = $profile;
+				self::$email = $email;
+				self::$password = $password;
 		}
 		
 		Object::add_extension('SiteTree', 'GoogleAnalyzer');
@@ -44,11 +58,11 @@ class GoogleAnalyzer extends DataObjectDecorator {
 	 *	@return String the config value
 	 **/
 	public function getGoogleConfig($key) {
-		if(Object::has_extension('SiteConfig', 'GoogleConfig')) {
+		if(class_exists('SiteConfig') && Object::has_extension('SiteConfig', 'GoogleConfig')) {
 			$config = SiteConfig::current_site_config();
 		}
 		switch($key) {
-			case 'profile': return !empty($config) && $config->GoogleAnalyticsProfileId ? $config->GoogleAnalyticsProfileId : GoogleAnalyzer::$pofile_id;
+			case 'profile': return !empty($config) && $config->GoogleAnalyticsProfileId ? $config->GoogleAnalyticsProfileId : GoogleAnalyzer::$profile_id;
 			case 'email': return !empty($config) && $config->GoogleAnalyticsEmail ? $config->GoogleAnalyticsEmail : GoogleAnalyzer::$email;
 			case 'password': return !empty($config) && $config->GoogleAnalyticsPassword ? $config->GoogleAnalyticsPassword : GoogleAnalyzer::$password;
 		}

@@ -54,12 +54,15 @@ class GoogleDataStore extends Object {
 	 **/
 	public function fetchData($query) {
 		
+		require_once('../googleanalytics/thirdparty/analytics_api.php');
+		
 		// prep query params
 		$query = array_merge($this->query, $query);
 		
 		// get cache object
+		$q = substr(GoogleAnalyzer::get_sapphire_version(), 0, 3) == '2.3' ? '`' : '"';
 		$hash = hash('md5', serialize(array_merge($this->setup, $query)));
-		$cache = DataObject::get_one('GoogleCachedQuery', "\"GoogleCachedQuery\".\"Hash\" = '$hash'");
+		$cache = DataObject::get_one('GoogleCachedQuery', "{$q}GoogleCachedQuery{$q}.{$q}Hash{$q} = '$hash'");
 		if(!$cache) $cache = new GoogleCachedQuery(array('Hash' => $hash));
 
 		// poll fresh data if cached query is empty or outdated

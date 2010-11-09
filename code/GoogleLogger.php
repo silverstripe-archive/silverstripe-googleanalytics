@@ -29,8 +29,10 @@ class GoogleLogger extends Extension {
 			case 'SiteConfig': Object::add_extension('SiteConfig', 'GoogleConfig'); break;
 			default: self::$google_analytics_code = $code;
 		}
-		
+
 		Object::add_extension('ContentController', 'GoogleLogger');
+
+		if(substr(GoogleAnalyzer::get_sapphire_version(), 0, 3) == '2.3') Director::add_callback(array("GoogleLogger","onAfterInit23"));
 	}
 
 	/**
@@ -42,12 +44,16 @@ class GoogleLogger extends Extension {
 	 *
 	 **/
 	protected function getGoogleConfig($key) {
-		if(Object::has_extension('SiteConfig', 'GoogleConfig')) {
+		if(class_exists('SiteConfig') && Object::has_extension('SiteConfig', 'GoogleConfig')) {
 			$config = SiteConfig::current_site_config();
 		}
 		switch($key) {
 			case 'code': return !empty($config) && $config->GoogleAnalyticsCode ? $config->GoogleAnalyticsCode : GoogleLogger::$google_analytics_code;
 		}
+	}
+
+	public function onAfterInit23() {
+		if(Controller::curr() instanceof ContentController) Controller::curr()->onAfterInit();
 	}
 
 	public function onAfterInit() {
