@@ -1,7 +1,0 @@
-Page:
-    testpage1:
-        Title: My test page
-        URLSegment: testpage1
-    testpage2:
-        Title: Another test page
-        URLSegment: anothertest

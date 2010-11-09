@@ -1,0 +1,32 @@
+#Stats_Performance {
+	overflow:hidden;
+}
+
+#GooglePerformanceChart {
+	clear:both;
+	width:600px;
+	height:300px;
+}
+
+#GooglePerformanceChartOverview {
+	float:left;
+	width:400px;
+	height:50px;
+	margin:0 20px 20px 0;
+}
+
+#GooglePerformanceChartOptions {
+	float:left;
+	padding:10px;
+	height:30px;
+}
+
+#GooglePerformanceChartOptions p {
+	margin:0;
+}
+
+#GooglePerformanceChartOptions #loading {
+	padding:5px 20px;
+	display:none;
+	background:url(../../cms/images/network-save.gif) no-repeat 0px 5px #fff;
+}

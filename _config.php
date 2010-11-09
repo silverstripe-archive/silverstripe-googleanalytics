@@ -1,13 +1,6 @@
 <?php
 
-DataObject::add_extension('SiteTree', 'GoogleAnalytics');
+GoogleLogger::activate('SiteConfig');
+GoogleAnalyzer::activate('SiteConfig');
 
-/**
- * Register a callback function for all page views.
- */
-Object::add_extension('ContentController', 'CrawlerStatsDecorator');
-Object::add_extension('SiteConfig', 'AnalyticsSetupDecorator');
-
-SS_Report::register("ReportAdmin", "AnalyticsReport");
-
-?>
+// SS_Report::register("ReportAdmin", "AnalyticsReport");
