@@ -5,9 +5,9 @@ class GoogleAnalyzer extends DataObjectDecorator {
 	static public $sapphire_version;
 
 	// credentials for the Google Analytics API
-	static protected $profile_id;
-	static protected $email;
-	static protected $password;
+	public static $profile_id;
+	public static $email;
+	public static $password;
 
 	function extraStatics() {
 		return array(

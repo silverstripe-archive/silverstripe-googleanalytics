@@ -3,7 +3,7 @@
 class GoogleLogger extends Extension {
 
 	// the Google Analytics code to be used in the JS snippet or
-	protected static $google_analytics_code;
+	public static $google_analytics_code;
 
 	// supported web crawlers, keys for nice names and values for signature regexes
 	public static $web_crawlers = array(
