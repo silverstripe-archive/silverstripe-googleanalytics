@@ -44,30 +44,10 @@ class GoogleAnalyzer extends DataObjectDecorator {
 				self::$email = $email;
 				self::$password = $password;
 		}
-		
+		SS_Report::register("ReportAdmin", "GoogleReport");
 		Object::add_extension('SiteTree', 'GoogleAnalyzer');
 	}
 
-	/**
-	 *	Return various configuration values
-	 *	
-	 *	@param $key String:
-	 *		'profile' the Google Analytics profile id or
-	 *		'email' the Google Analytics account's email address or
-	 *		'password' the password for the above Google Analytics account
-	 *	@return String the config value
-	 **/
-	public function getGoogleConfig($key) {
-		if(class_exists('SiteConfig') && Object::has_extension('SiteConfig', 'GoogleConfig')) {
-			$config = SiteConfig::current_site_config();
-		}
-		switch($key) {
-			case 'profile': return !empty($config) && $config->GoogleAnalyticsProfileId ? $config->GoogleAnalyticsProfileId : GoogleAnalyzer::$profile_id;
-			case 'email': return !empty($config) && $config->GoogleAnalyticsEmail ? $config->GoogleAnalyticsEmail : GoogleAnalyzer::$email;
-			case 'password': return !empty($config) && $config->GoogleAnalyticsPassword ? $config->GoogleAnalyticsPassword : GoogleAnalyzer::$password;
-		}
-	}
-	
 	public function updateCMSFields(FieldSet $fields) {
 
 		$fields->addFieldToTab('Root', new Tab('GoogleAnalytics', 'Google Analytics'));

@@ -35,23 +35,6 @@ class GoogleLogger extends Extension {
 		if(substr(GoogleAnalyzer::get_sapphire_version(), 0, 3) == '2.3') Director::add_callback(array("GoogleLogger","onAfterInit23"));
 	}
 
-	/**
-	 *	Return various configuration values
-	 *	
-	 *	@param $key set:
-	 *		String 'code' the Google Analytics code to be used in the JS snippet or
-	 *	@return String the config value
-	 *
-	 **/
-	protected function getGoogleConfig($key) {
-		if(class_exists('SiteConfig') && Object::has_extension('SiteConfig', 'GoogleConfig')) {
-			$config = SiteConfig::current_site_config();
-		}
-		switch($key) {
-			case 'code': return !empty($config) && $config->GoogleAnalyticsCode ? $config->GoogleAnalyticsCode : GoogleLogger::$google_analytics_code;
-		}
-	}
-
 	public function onAfterInit23() {
 		if(Controller::curr() instanceof ContentController) Controller::curr()->onAfterInit();
 	}
@@ -59,8 +42,8 @@ class GoogleLogger extends Extension {
 	public function onAfterInit() {
 
 		// include the JS snippet into the frontend page markup
-		if($this->getGoogleConfig('code')) {
-			$googleanalyticsjssnippet = new ArrayData(array('GoogleAnalyticsCode' => $this->getGoogleConfig('code')));
+		if(GoogleConfig::get_google_config('code')) {
+			$googleanalyticsjssnippet = new ArrayData(array('GoogleAnalyticsCode' => GoogleConfig::get_google_config('code')));
 			Requirements::customScript($googleanalyticsjssnippet->renderWith('GoogleAnalyticsJSSnippet'));
 		}
 
