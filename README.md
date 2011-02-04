@@ -1,7 +1,7 @@
 # GOOGLE ANALYTICS
 
 ## Maintainer Contact
- * Andreas Piening <andreas (at) silverstripe (dot) com>
+ * Julian Seidenberg <julian ( at) silverstripe (dot) com>
 
 ## Description
 
