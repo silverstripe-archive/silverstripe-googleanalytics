@@ -9,6 +9,31 @@ The Google Analytics module consists of 2 components that can be employed indepe
 The Google Logger injects the google analytics javascript snippet into your source code and logs relevant events (as of now only crawler visits)
 The Analyzer adds the GA UI to your CMS
 
+## Tentative Roadmap
+If you want to help out and develop some of these improvements please fork this project and submit a pull request (see this guide on how to do this: http://help.github.com/pull-requests/). I greatly appreciate any help for improving the module.
+
+Quick improvements:
+- Show time and date, not just date in graph legend
+- Change color of events in the graph of pageview from red to something half-transparent and so that events don't make reading the graph so difficult
+- Ability to filter different types of events (at the moment only page "save and publish" events) on and off
+- New Metric: Show top incoming search keywords for each page
+- New Metric: Show top incoming page links for each page
+- New Metric: Show time visitors spend on each page
+- Do a Google Search Engine submit when a page is "Saved and Published" so the page is re-indexed quicker.
+- Hover state to show details of each event in the pageview graph
+
+Larger improvements:
+- Tools that analyses content and suggests synonyms to use for top search keywords. Using synonyms will improve the search performance as people searching for the synonym terms will be able to find the site. 
+- Visualize the visitors' navigation paths through the site. I.e. each page has graph of top other pages the visitor goes to from that page.
+- Rewrite javascript using entwine for better long-term code maintenance
+- Search keyword overlay on content. So search keywords show up in a different color when an admin is browsing the site.
+- Add crawler visits as a type of event that can be filtered on/off in the graph
+- Overlaying of graphs for comparison of site performs between different time periods / events
+- Graph of the amount of time visitors spend on each page. Also show "average time spent on page: 5.54 sec (rank: 2 / 543 pages)".
+- Report that identifies the most popular pages
+- Summary reports that take in GA stats from a whole subsection of a site (a page and all its children) and displays that as graphs on the parent page
+
+
 ## Requirements
 
  * SilverStripe 2.3 or newer (for 2.3 use the hardcode activation since SiteConfig doesn't exist in 2.3)
