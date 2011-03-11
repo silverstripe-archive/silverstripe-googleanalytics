@@ -18,7 +18,7 @@
 
 			datasets = {
 				"visits": { label: "Visits" },
-				"pageviews": { label: "Page Views" },
+				"pageviews": { label: "Page Views" }
 		    };
 
 			options = {
@@ -37,7 +37,7 @@
 			choiceContainer = $("#choices");
 			$.each(datasets, function(key, val) {
 				choiceContainer.append('<input type="checkbox" name="' + key +
-					'" id="id' + key + '"> ' +
+					'" id="id' + key + '" /> ' +
 					'<label for="id' + key + '">'
 					+ val.label + '</label> ');
 			});
@@ -61,7 +61,7 @@
 							datasets = data.series;
 							markers = data.markers;
 							$('#loading').hide();
-						},
+						}
 					});
 				}
 
