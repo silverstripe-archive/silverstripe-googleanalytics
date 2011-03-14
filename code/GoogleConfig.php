@@ -19,7 +19,7 @@ class GoogleConfig extends DataObjectDecorator {
 		$fields->addFieldToTab('Root.GoogleAnalytics', new TextField('GoogleAnalyticsCode', 'Google Analytics Code (UA-XXXXXX-X)'));
 		$fields->addFieldToTab('Root.GoogleAnalytics', new TextField('GoogleAnalyticsProfileId', 'Google Analytics Profile ID (hidden in the URL parameter "id" of the "View Report" link inside Google Analytics)'));
 		$fields->addFieldToTab('Root.GoogleAnalytics', new TextField('GoogleAnalyticsEmail', 'GoogleAnalyticsEmail (the email address of the Google Analytics account to use)'));
-		$fields->addFieldToTab('Root.GoogleAnalytics', new TextField('GoogleAnalyticsPassword', 'Google Analytics Password (the password for the above account)'));
+		$fields->addFieldToTab('Root.GoogleAnalytics', new PasswordField('GoogleAnalyticsPassword', 'Google Analytics Password (the password for the above account)'));
 	}
 
 	/**
