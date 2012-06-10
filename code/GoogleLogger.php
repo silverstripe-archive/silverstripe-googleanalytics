@@ -74,14 +74,14 @@ class GoogleLogger extends Extension {
 	/**
 	 * @param bool
 	 */
-	public function set_event_tracking_enabled($bool) {
+	public static function set_event_tracking_enabled($bool) {
 		self::$include_event_tracking = (bool) $bool;
 	}
 	
 	/**
 	 * @return bool
 	 */
-	public function event_tracking_enabled() {
+	public static function event_tracking_enabled() {
 		return self::$include_event_tracking;
 	}
 }

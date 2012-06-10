@@ -1,6 +1,9 @@
 <?php
 
-class GoogleAnalyzer extends DataObjectDecorator {
+/**
+ * @package googleanalytics
+ */
+class GoogleAnalyzer extends DataExtension {
 
 	static public $sapphire_version;
 
@@ -9,13 +12,9 @@ class GoogleAnalyzer extends DataObjectDecorator {
 	public static $email;
 	public static $password;
 
-	function extraStatics() {
-		return array(
-			'has_many' => array(
-				'Events' => 'GoogleLogEvent',
-			),
-		);
-	}
+	public $has_many = array(
+		'Events' => 'GoogleLogEvent',
+	);
 
 	/**
 	 *	for legacy reasons
@@ -48,10 +47,8 @@ class GoogleAnalyzer extends DataObjectDecorator {
 		Object::add_extension('SiteTree', 'GoogleAnalyzer');
 	}
 
-	public function updateCMSFields(FieldSet $fields) {
-
+	public function updateCMSFields(FieldList $fields) {
 		$fields->addFieldToTab('Root', new Tab('GoogleAnalytics', 'Google Analytics'));
-		
 		$fields->addFieldToTab("Root.GoogleAnalytics", new TabSet('Stats'));
 		$fields->addFieldToTab('Root.GoogleAnalytics.Stats', new Tab('Performance', 'Performance'));
 		$fields->addFieldToTab("Root.GoogleAnalytics.Stats.Performance", new GooglePerformanceChart($this->owner));
