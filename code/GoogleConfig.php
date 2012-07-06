@@ -1,17 +1,13 @@
 <?php
 
-class GoogleConfig extends DataObjectDecorator {
+class GoogleConfig extends DataExtension {
 
-	function extraStatics() {
-		return array(
-			'db' => array(
-				'GoogleAnalyticsCode' => 'Varchar',
-				'GoogleAnalyticsProfileId' => 'Varchar',
-				'GoogleAnalyticsEmail' => 'Varchar',
-				'GoogleAnalyticsPassword' => 'Varchar',
-			),
-		);
-	}
+	static $db = array(
+		'GoogleAnalyticsCode' => 'Varchar',
+		'GoogleAnalyticsProfileId' => 'Varchar',
+		'GoogleAnalyticsEmail' => 'Varchar',
+		'GoogleAnalyticsPassword' => 'Varchar',
+	);
 
 	public function updateCMSFields(FieldSet $fields) {
 

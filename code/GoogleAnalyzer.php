@@ -1,6 +1,6 @@
 <?php
 
-class GoogleAnalyzer extends DataObjectDecorator {
+class GoogleAnalyzer extends DataExtension {
 
 	static public $sapphire_version;
 
@@ -9,13 +9,9 @@ class GoogleAnalyzer extends DataObjectDecorator {
 	public static $email;
 	public static $password;
 
-	function extraStatics() {
-		return array(
-			'has_many' => array(
-				'Events' => 'GoogleLogEvent',
-			),
-		);
-	}
+	static $has_many = array(
+		'Events' => 'GoogleLogEvent',
+	);
 
 	/**
 	 *	for legacy reasons
