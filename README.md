@@ -38,7 +38,7 @@ Bigger improvements:
 
 ## Requirements
 
- * SilverStripe 2.3 or newer (for 2.3 use the hardcode activation since SiteConfig doesn't exist in 2.3)
+ * SilverStripe 3.0
 
 ## DB Adapter Support
  * MySQL
