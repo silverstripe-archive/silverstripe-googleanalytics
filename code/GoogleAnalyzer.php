@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @package googleanalytics
+ */
 class GoogleAnalyzer extends DataExtension {
 
 	static public $sapphire_version;
@@ -44,10 +47,8 @@ class GoogleAnalyzer extends DataExtension {
 		Object::add_extension('SiteTree', 'GoogleAnalyzer');
 	}
 
-	public function updateCMSFields(FieldSet $fields) {
-
+	public function updateCMSFields(FieldList $fields) {
 		$fields->addFieldToTab('Root', new Tab('GoogleAnalytics', 'Google Analytics'));
-		
 		$fields->addFieldToTab("Root.GoogleAnalytics", new TabSet('Stats'));
 		$fields->addFieldToTab('Root.GoogleAnalytics.Stats', new Tab('Performance', 'Performance'));
 		$fields->addFieldToTab("Root.GoogleAnalytics.Stats.Performance", new GooglePerformanceChart($this->owner));

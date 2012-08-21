@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @package googleanalytics
+ */
 class GoogleConfig extends DataExtension {
 
 	static $db = array(
@@ -9,7 +12,7 @@ class GoogleConfig extends DataExtension {
 		'GoogleAnalyticsPassword' => 'Varchar',
 	);
 
-	public function updateCMSFields(FieldSet $fields) {
+	public function updateCMSFields(FieldList $fields) {
 
 		$fields->addFieldToTab("Root", new Tab('GoogleAnalytics'));
 		$fields->addFieldToTab('Root.GoogleAnalytics', new TextField('GoogleAnalyticsCode', 'Google Analytics Code (UA-XXXXXX-X)'));

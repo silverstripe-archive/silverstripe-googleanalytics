@@ -5,6 +5,11 @@ class GoogleLogger extends Extension {
 	// the Google Analytics code to be used in the JS snippet or
 	public static $google_analytics_code;
 
+	/**
+	 * @var bool
+	 */
+	public static $include_event_tracking = false;
+	
 	// supported web crawlers, keys for nice names and values for signature regexes
 	public static $web_crawlers = array(
 		'Google' => 'googlebot',
@@ -58,5 +63,25 @@ class GoogleLogger extends Extension {
 				}
 			}
 		}
+		
+		// include event tracking api if required, jQuery 1.5 is required for automatic data attributes
+		if(self::event_tracking_enabled()) {
+			Requirements::javascript(THIRDPARTY_DIR.'/jquery/jquery.js');
+			Requirements::javascript('googleanalytics/javascript/googleanalytics.event.tracking.js');
+		}
+	}
+	
+	/**
+	 * @param bool
+	 */
+	public static function set_event_tracking_enabled($bool) {
+		self::$include_event_tracking = (bool) $bool;
+	}
+	
+	/**
+	 * @return bool
+	 */
+	public static function event_tracking_enabled() {
+		return self::$include_event_tracking;
 	}
 }
