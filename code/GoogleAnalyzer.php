@@ -43,7 +43,7 @@ class GoogleAnalyzer extends DataExtension {
 				self::$email = $email;
 				self::$password = $password;
 		}
-		SS_Report::register("ReportAdmin", "GoogleReport");
+
 		Object::add_extension('SiteTree', 'GoogleAnalyzer');
 	}
 

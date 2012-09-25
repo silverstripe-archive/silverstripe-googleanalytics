@@ -187,7 +187,7 @@
 		}
 		
 		function maxPaneSize() {
-			var avail = new Array($('#Stats_Performance').innerHeight(), $('#Stats_Performance').innerWidth());
+			var avail = new Array(500, 640);    //size of the chart to use
 			var offset = new Array($('#GooglePerformanceChartOverview').outerHeight(), $('#GooglePerformanceChartOverview').outerWidth());
 			var max = new Array(avail[0] - offset[0] - 40, avail[1] - 20);
 			var current = new Array($('#GooglePerformanceChart').height(), $('#GooglePerformanceChart').width());
@@ -195,13 +195,15 @@
 			if(max[1] != current[1]) $('#GooglePerformanceChart').width(max[1]);
 		}
 
-		$('#GooglePerformanceChart').livequery(function(){
-			initPlotter();
-			plotAccordingToChoices();
+		$("#GooglePerformanceChart").entwine({
+			onmatch: function() {
+				initPlotter();
+				plotAccordingToChoices();
 
-			// maximize the graph
-			setInterval(maxPaneSize, 1000);
-		})
-
+				// maximize the graph
+				setInterval(maxPaneSize, 2000);
+			}
+		});
 	});
+
 })(jQuery);

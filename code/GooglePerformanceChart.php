@@ -12,7 +12,7 @@ class GooglePerformanceChart extends Compositefield {
 		}
 	}
 
-	function FieldHolder() {
+	function FieldHolder($properties = array()) {
 		return $this->renderWith('GooglePerformanceChart');
 	}
 	
