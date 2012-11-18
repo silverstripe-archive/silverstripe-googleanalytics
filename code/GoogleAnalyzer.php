@@ -27,7 +27,7 @@ class GoogleAnalyzer extends DataExtension {
 
 	/**
 	 *	Activate the GoogleAnalyzer
-	 *	
+	 *
 	 *	@param $profile String:
 	 *		the Google Analytics profile ID or
 	 *		'SiteConfig' for using the SiteConfig to configure this value
@@ -35,7 +35,7 @@ class GoogleAnalyzer extends DataExtension {
 	 *	@param $password String password for the above account (can be left blank if configured with SiteConfig)
 	 **/
 	public static function activate($profile = 'SiteConfig', $email = null, $password = null) {
-		
+
 		switch($profile) {
 			case 'SiteConfig': Object::add_extension('SiteConfig', 'GoogleConfig'); break;
 			default:
@@ -48,9 +48,9 @@ class GoogleAnalyzer extends DataExtension {
 	}
 
 	public function updateCMSFields(FieldList $fields) {
-		$fields->addFieldToTab('Root', new Tab('GoogleAnalytics', 'Google Analytics'));
-		$fields->addFieldToTab("Root.GoogleAnalytics", new TabSet('Stats'));
-		$fields->addFieldToTab('Root.GoogleAnalytics.Stats', new Tab('Performance', 'Performance'));
+		$fields->addFieldToTab('Root', Tab::create("GoogleAnalytics", _t('GoogleAnalyzer.TABTITLE',"Google Analytics")));
+		$fields->addFieldToTab("Root.GoogleAnalytics", TabSet::create("Stats", _t('GoogleAnalyzer.STATS',"Stats")));
+		$fields->addFieldToTab('Root.GoogleAnalytics.Stats', Tab::create("Performance", _t('GoogleAnalyzer.PERFORMANCE',"Performance")));
 		$fields->addFieldToTab("Root.GoogleAnalytics.Stats.Performance", new GooglePerformanceChart($this->owner));
 	}
 }
