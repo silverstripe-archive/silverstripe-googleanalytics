@@ -49,16 +49,16 @@ Bigger improvements:
 
 ## Installation
 
-1. follow the usual [module installation process](http://doc.silverstripe.org/modules#installation)
-2. activate the logger by adding the following to the end of your mysite/_config.php: `GoogleLogger::activate('UA-XXXXX-Y');` (hardcode google code, useful in combination with _ss_environment.php) or `GoogleLogger::activate('SiteConfig');` (use SiteConfig for setup)
-3. activate the analyzer by adding the following to the end of your mysite/_config.php: `GoogleAnalyzer::activate('1234567', "my@google.login", "mypassword");`	(hardcode credentials, useful in combination with _ss_environment.php) or `GoogleAnalyzer::activate('SiteConfig');` (use SiteConfig for setup)
+1. Follow the usual [module installation process](http://doc.silverstripe.org/framework/en/topics/modules#installation)
+2. Activate the logger by adding the following to the end of your mysite/_config.php: `GoogleLogger::activate('UA-XXXXX-Y');` (hardcode google code, useful in combination with _ss_environment.php) or `GoogleLogger::activate('SiteConfig');` (use SiteConfig for setup)
+3. Activate the analyzer by adding the following to the end of your mysite/_config.php: `GoogleAnalyzer::activate('1234567', "my@google.login", "mypassword");`	(hardcode credentials, useful in combination with _ss_environment.php) or `GoogleAnalyzer::activate('SiteConfig');` (use SiteConfig for setup)
 4. If you wish to active the event tracking helper, include `GoogleLogger::set_event_tracking_enabled(true)`
-5. run dev/build (http://www.mysite.com/dev/build?flush=all)
-6. if you're using SiteConfig populate your siteconfig in the CMS.
+5. Run dev/build (`http://www.mysite.com/dev/build?flush=all`)
+6. If you're using SiteConfig populate your siteconfig in the CMS.
 
 ## Retrieving your credentials from GA
 
-![Screenshot showing where to find your credentials in GA](docs/help.png)
+![Screenshot showing where to find your credentials in GA](https://raw.github.com/silverstripe-labs/silverstripe-googleanalytics/master/docs/help.png)
 
 ## Setup
 
@@ -78,8 +78,8 @@ Because the logger is by default only attached to the content controller the goo
 
 ## Background information for developers
 
-- [Google Analytics Data API - Data Feed](http://code.google.com/apis/analytics/docs/gdata/gdataReferenceDataFeed.html)
-- [Google Analytics Data Feed Query Explorer](http://code.google.com/apis/analytics/docs/gdata/gdataExplorer.html)
+- [Google Analytics Data API - Data Feed](https://developers.google.com/analytics/devguides/reporting/core/v2/gdataReferenceDataFeed)
+- [Google Analytics Data Feed Query Explorer](https://developers.google.com/analytics/devguides/reporting/core/gdataExplorer)
 
 ## Feedback
 
