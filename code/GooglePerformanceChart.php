@@ -8,14 +8,14 @@ class GooglePerformanceChart extends Compositefield {
 		parent::__construct();
 		switch(true) {
 			case $page instanceof SiteTree: $this->page = $page; break;
-			case is_numeric($page): $page = DataObject::get_by_id('SiteTree', (int)$page); break;
+			case is_numeric($page): $page = SiteTree::get()->byID((int)$page); break;
 		}
 	}
 
 	function FieldHolder($properties = array()) {
 		return $this->renderWith('GooglePerformanceChart');
 	}
-	
+
 	function PageID() {
 		if($this->page) return $this->page->ID;
 	}

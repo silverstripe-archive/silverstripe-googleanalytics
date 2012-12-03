@@ -3,7 +3,7 @@
 class GoogleDataController extends Controller {
 
 	function performance($request) {
-		
+
 		$markers = array();
 
 		$q = substr(GoogleAnalyzer::get_sapphire_version(), 0, 3) == '2.3' ? '`' : '"';
@@ -12,7 +12,7 @@ class GoogleDataController extends Controller {
 
 		$filters = null;
 		$eventfiltersql = "{$q}GoogleLogEvent{$q}.{$q}PageID{$q} = 0";
-		$page = DataObject::get_by_id('SiteTree', (int)$request->param('ID'));
+		$page = SiteTree::get()->byID((int)$request->param('ID'));
 		if($page) {
 			$url = trim($page->Link(), '/');
 			if(!empty($url)) $url .= '/';
@@ -25,13 +25,13 @@ class GoogleDataController extends Controller {
 				$markers[] = array(strtotime($version->LastEdited) * 1000, 'Updated', 'Long descr.');
 			}
 		}
-		
+
 		$events = DataObject::get('GoogleLogEvent', $eventfiltersql);
 		if($events) foreach($events as $event) $markers[] = array(strtotime($event->Created) * 1000, $event->Title, 'Long descr.');
 
 		$store = new GoogleDataStore(GoogleConfig::get_google_config('profile'), GoogleConfig::get_google_config('email'), GoogleConfig::get_google_config('password'));
-		
-		
+
+
 		$data = $store->fetchPerformance(array(
 			'dimensions' => 'ga:date',
 			'metrics' => 'ga:visits,ga:pageviews',

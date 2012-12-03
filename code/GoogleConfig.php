@@ -7,7 +7,7 @@ class GoogleConfig extends DataExtension {
 
 	static $db = array(
 		'GoogleAnalyticsCode' => 'Varchar',
-		'GoogleAnalyticsProfileId' => 'Varchar',
+		'GoogleAnalyticsProfileId' => 'Varchar(255)',
 		'GoogleAnalyticsEmail' => 'Varchar',
 		'GoogleAnalyticsPassword' => 'Varchar',
 	);
@@ -15,15 +15,15 @@ class GoogleConfig extends DataExtension {
 	public function updateCMSFields(FieldList $fields) {
 
 		$fields->addFieldToTab("Root", new Tab('GoogleAnalytics'));
-		$fields->addFieldToTab('Root.GoogleAnalytics', new TextField('GoogleAnalyticsCode', 'Google Analytics Code (UA-XXXXXX-X)'));
-		$fields->addFieldToTab('Root.GoogleAnalytics', new TextField('GoogleAnalyticsProfileId', 'Google Analytics Profile ID (hidden in the URL parameter "id" of the "View Report" link inside Google Analytics)'));
-		$fields->addFieldToTab('Root.GoogleAnalytics', new TextField('GoogleAnalyticsEmail', 'GoogleAnalyticsEmail (the email address of the Google Analytics account to use)'));
-		$fields->addFieldToTab('Root.GoogleAnalytics', new PasswordField('GoogleAnalyticsPassword', 'Google Analytics Password (the password for the above account)'));
+		$fields->addFieldToTab('Root.GoogleAnalytics', TextField::create("GoogleAnalyticsCode")->setTitle(_t('GoogleConfig.CODE',"Google Analytics Code"))->setRightTitle("(UA-XXXXXX-X)"));
+		$fields->addFieldToTab('Root.GoogleAnalytics', TextField::create("GoogleAnalyticsProfileId")->setTitle(_t('GoogleConfig.PROFILEID',"Google Analytics Profile ID"))->setRightTitle(_t('GoogleConfig.PROFILEIDEXPLANATION','Hidden in the URL parameter "id" of the "View Report" link inside Google Analytics')));
+		$fields->addFieldToTab('Root.GoogleAnalytics', TextField::create("GoogleAnalyticsEmail")->setTitle(_t('GoogleConfig.EMAIL',"Google Analytics Email"))->setRightTitle(_t('GoogleConfig.EMAILEXPLANATION',"The email address of the Google Analytics account to use")));
+		$fields->addFieldToTab('Root.GoogleAnalytics', PasswordField::create("GoogleAnalyticsPassword")->setTitle(_t('GoogleConfig.PASSWORD',"Google Analytics Password"))->setRightTitle(_t('GoogleConfig.PASSWORDEXPLANATION',"The password for the above account")));
 	}
 
 	/**
 	 *	Return various configuration values
-	 *	
+	 *
 	 *	@param $key String:
 	 *		'profile' the Google Analytics profile id or
 	 *		'email' the Google Analytics account's email address or
@@ -41,5 +41,5 @@ class GoogleConfig extends DataExtension {
 			case 'password': 	return !empty($config) && $config->GoogleAnalyticsPassword 	? $config->GoogleAnalyticsPassword 	: GoogleAnalyzer::$password;
 		}
 	}
-	
+
 }
