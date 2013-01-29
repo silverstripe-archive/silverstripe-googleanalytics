@@ -37,14 +37,14 @@ class GoogleAnalyzer extends DataExtension {
 	public static function activate($profile = 'SiteConfig', $email = null, $password = null) {
 
 		switch($profile) {
-			case 'SiteConfig': Object::add_extension('SiteConfig', 'GoogleConfig'); break;
+			case 'SiteConfig': SiteConfig::add_extension('GoogleConfig'); break;
 			default:
 				self::$profile_id = $profile;
 				self::$email = $email;
 				self::$password = $password;
 		}
 
-		Object::add_extension('SiteTree', 'GoogleAnalyzer');
+		SiteTree::add_extension('GoogleAnalyzer');
 	}
 
 	public function updateCMSFields(FieldList $fields) {
