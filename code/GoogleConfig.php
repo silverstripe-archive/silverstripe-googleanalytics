@@ -31,7 +31,7 @@ class GoogleConfig extends DataExtension {
 	 *	@return String the config value
 	 **/
 	public static function get_google_config($key) {
-		if(class_exists('SiteConfig') && Object::has_extension('SiteConfig', 'GoogleConfig')) {
+		if(class_exists('SiteConfig') && SiteConfig::has_extension('GoogleConfig')) {
 			$config = SiteConfig::current_site_config();
 		}
 		switch($key) {
