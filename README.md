@@ -38,7 +38,7 @@ Bigger improvements:
 
 ## Requirements
 
- * SilverStripe 3.0
+ * SilverStripe 3.1+
 
 ## DB Adapter Support
  * MySQL
