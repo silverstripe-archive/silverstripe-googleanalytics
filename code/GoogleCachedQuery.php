@@ -2,7 +2,7 @@
 
 class GoogleCachedQuery extends DataObject {
 
-	static $db = array(
+	private static $db = array(
 		'Hash' => 'Varchar(255)',
 		'Data' => 'Text',
 	);

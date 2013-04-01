@@ -2,12 +2,12 @@
 
 class GoogleLogEvent extends DataObject {
 
-	static $db = array(
+	private static $db = array(
 		'Title' => 'Varchar',
 		'Description' => 'Text',
 	);
 
-	static $has_one = array(
+	private static $has_one = array(
 		'Page' => 'SiteTree',
 	);
 }
