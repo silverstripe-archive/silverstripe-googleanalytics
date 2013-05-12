@@ -12,7 +12,7 @@ class GoogleAnalyzer extends DataExtension {
 	public static $email;
 	public static $password;
 
-	static $has_many = array(
+	private static $has_many = array(
 		'Events' => 'GoogleLogEvent',
 	);
 

@@ -5,7 +5,7 @@
  */
 class GoogleConfig extends DataExtension {
 
-	static $db = array(
+	private static $db = array(
 		'GoogleAnalyticsCode' => 'Varchar',
 		'GoogleAnalyticsProfileId' => 'Varchar(255)',
 		'GoogleAnalyticsEmail' => 'Varchar',
