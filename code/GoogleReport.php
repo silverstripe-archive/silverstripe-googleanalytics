@@ -1,6 +1,10 @@
 <?php
 
 class GoogleReport extends SS_Report {
+	
+	function title() {
+		return _t('GoogleReport.REPORTTITLE',"Google Analytics");
+	}
 
 	function description() {
 		return "add description";
