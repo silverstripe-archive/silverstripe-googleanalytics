@@ -1,15 +1,25 @@
 nl:
-    GoogleConfig:
-        CODE: 'Google Analytics Code'
-        PROFILEID: 'Google Analytics Profiel ID'
-        PROFILEIDEXPLANATION: '"id" van "Bekijk Report" link adres in Google Analytics'
-        EMAIL: 'Google Analytics E-mailadres'
-        EMAILEXPLANATION: 'Het email-adres van uw Google Analytics account'
-        PASSWORD: 'Google Analytics Wachtwoord'
-        PASSWORDEXPLANATION: 'Het wachtwoord van uw Google Analytics account'
-    GoogleAnalyzer:
-        TABTITLE: 'Google Analytics'
-        STATS: 'Statistieken'
-        PERFORMANCE: 'Prestatie'
-    GoogleReport:
-        REPORTTITLE: 'Google Analytics'
+  GoogleAnalyzer:
+    PERFORMANCE: 'Prestatie'
+    STATS: 'Statistieken'
+    TABTITLE: 'Google Analytics'
+  GoogleCachedQuery:
+    PLURALNAME: 'Google Cached Queries'
+    SINGULARNAME: 'Google Cached Query'
+  GoogleConfig:
+    CODE: 'Google Analytics Code'
+    EMAIL: 'Google Analytics Email'
+    EMAILEXPLANATION: 'Het email-adres van uw Google Analytics account'
+    PASSWORD: 'Google Analytics Wachtwoord'
+    PASSWORDEXPLANATION: 'Het wachtwoord van uw Google Analytics account'
+    PROFILEID: 'Google Analytics Profiel ID'
+    PROFILEIDEXPLANATION: '"id" van "Bekijk Report" link adres in Google Analytics'
+  GoogleLogEvent:
+    PLURALNAME: 'Google Log Events'
+    SINGULARNAME: 'Google Log Event'
+  GooglePerformanceChart:
+    CHOOSEMETRICS: 'Kies een waarde om weer te geven'
+    LOADING: laden
+    SHOW: Toon
+  GoogleReport:
+    REPORTTITLE: 'Google Analytics'
