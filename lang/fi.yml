@@ -1,0 +1,25 @@
+fi:
+  GoogleAnalyzer:
+    PERFORMANCE: Tehokkuus
+    STATS: Tilastot
+    TABTITLE: 'Google Analytics'
+  GoogleCachedQuery:
+    PLURALNAME: 'Google Cached Queries'
+    SINGULARNAME: 'Google Cached Query'
+  GoogleConfig:
+    CODE: 'Google Analytics -koodi'
+    EMAIL: 'Google Analytics -sähköposti'
+    EMAILEXPLANATION: 'Google Analytics -tilin sähköpostiosoite'
+    PASSWORD: 'Google Analytics -salasana'
+    PASSWORDEXPLANATION: 'Google Analytics -tilin salasana'
+    PROFILEID: 'Google Analytics -profiilin ID'
+    PROFILEIDEXPLANATION: 'Piilotettuna URL:ssa "id"-parametrina "View Report"-linkissä Google Analytics -sivustolla'
+  GoogleLogEvent:
+    PLURALNAME: 'Google Log -tapahtumat'
+    SINGULARNAME: 'Google Log -tapahtuma'
+  GooglePerformanceChart:
+    CHOOSEMETRICS: 'Valitse mitattavat asiat'
+    LOADING: ladataan
+    SHOW: Näytä
+  GoogleReport:
+    REPORTTITLE: 'Google Analytics'
