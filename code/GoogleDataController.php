@@ -2,6 +2,8 @@
 
 class GoogleDataController extends Controller {
 
+	private static $allowed_actions = array('performance');
+
 	function performance($request) {
 
 		$markers = array();
