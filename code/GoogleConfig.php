@@ -10,6 +10,7 @@ class GoogleConfig extends DataExtension {
 		'GoogleAnalyticsProfileId' => 'Varchar(255)',
 		'GoogleAnalyticsEmail' => 'Varchar',
 		'GoogleAnalyticsPassword' => 'Varchar',
+		'UseGoogleUniversalSnippet' => 'Boolean'
 	);
 
 	public function updateCMSFields(FieldList $fields) {
@@ -19,6 +20,10 @@ class GoogleConfig extends DataExtension {
 		$fields->addFieldToTab('Root.GoogleAnalytics', TextField::create("GoogleAnalyticsProfileId")->setTitle(_t('GoogleConfig.PROFILEID',"Google Analytics Profile ID"))->setRightTitle(_t('GoogleConfig.PROFILEIDEXPLANATION','Hidden in the URL parameter "id" of the "View Report" link inside Google Analytics')));
 		$fields->addFieldToTab('Root.GoogleAnalytics', TextField::create("GoogleAnalyticsEmail")->setTitle(_t('GoogleConfig.EMAIL',"Google Analytics Email"))->setRightTitle(_t('GoogleConfig.EMAILEXPLANATION',"The email address of the Google Analytics account to use")));
 		$fields->addFieldToTab('Root.GoogleAnalytics', PasswordField::create("GoogleAnalyticsPassword")->setTitle(_t('GoogleConfig.PASSWORD',"Google Analytics Password"))->setRightTitle(_t('GoogleConfig.PASSWORDEXPLANATION',"The password for the above account")));
+		$fields->addFieldToTab('Root.GoogleAnalytics', 
+			CheckboxField::create('UseGoogleUniversalSnippet')
+				->setTitle(_t('GoogleConfig.UNIVERSAL', 'Use Google Universal Snippet'))
+		);
 	}
 
 	/**
@@ -34,11 +39,13 @@ class GoogleConfig extends DataExtension {
 		if(class_exists('SiteConfig') && SiteConfig::has_extension('GoogleConfig')) {
 			$config = SiteConfig::current_site_config();
 		}
+
 		switch($key) {
 			case 'code': 		return !empty($config) && $config->GoogleAnalyticsCode 		? $config->GoogleAnalyticsCode 		: GoogleLogger::$google_analytics_code;
 			case 'profile': 	return !empty($config) && $config->GoogleAnalyticsProfileId	? $config->GoogleAnalyticsProfileId	: GoogleAnalyzer::$profile_id;
 			case 'email': 		return !empty($config) && $config->GoogleAnalyticsEmail 	? $config->GoogleAnalyticsEmail 	: GoogleAnalyzer::$email;
 			case 'password': 	return !empty($config) && $config->GoogleAnalyticsPassword 	? $config->GoogleAnalyticsPassword 	: GoogleAnalyzer::$password;
+			case 'universal':	return !empty($config) && $config->UseGoogleUniversalSnippet ? $config->UseGoogleUniversalSnippet : GoogleAnalyzer::$use_universal_snippet;
 		}
 	}
 

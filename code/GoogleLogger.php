@@ -35,25 +35,36 @@ class GoogleLogger extends Extension {
 			default: self::$google_analytics_code = $code;
 		}
 
-		ContentController::add_extension('GoogleLogger');
+		Controller::add_extension('GoogleLogger');
 
-		if(substr(GoogleAnalyzer::get_sapphire_version(), 0, 3) == '2.3') Director::add_callback(array("GoogleLogger","onAfterInit23"));
+		if(substr(GoogleAnalyzer::get_sapphire_version(), 0, 3) == '2.3') {
+			Director::add_callback(array("GoogleLogger","onAfterInit23"));
+		}
 	}
 
 	public function onAfterInit23() {
-		if(Controller::curr() instanceof ContentController) Controller::curr()->onAfterInit();
+		if(Controller::curr() instanceof ContentController) {
+			Controller::curr()->onAfterInit();
+		}
 	}
 
 	public function onAfterInit() {
-		
+		if($this->owner instanceof DevelopmentAdmin || $this->owner instanceof DatabaseAdmin) {
+			return;
+		}
+
 		// include the JS snippet into the frontend page markup
 		if(GoogleConfig::get_google_config('code')) {
-			$googleanalyticsjssnippet = new ArrayData(array('GoogleAnalyticsCode' => GoogleConfig::get_google_config('code')));
-			Requirements::customScript($googleanalyticsjssnippet->renderWith('GoogleAnalyticsJSSnippet'));
+			$snippet = new ArrayData(array(
+				'GoogleAnalyticsCode' => GoogleConfig::get_google_config('code'),
+				'UseGoogleUniversalSnippet' => GoogleConfig::get_google_config('universal')
+			));
+
+			Requirements::customScript($snippet->renderWith('GoogleAnalyticsJSSnippet'));
 		}
 
 		// if this request comes from a web crawler, leave a trace
-		if(isset($_SERVER['HTTP_USER_AGENT']) && $this->owner->data() instanceof SiteTree && $this->owner->data()->ID) {
+		if(isset($_SERVER['HTTP_USER_AGENT']) && $this->owner instanceof ContentController && $this->owner->data()->ID) {
 			foreach(GoogleLogger::$web_crawlers as $name => $signature) {
 				if(preg_match('/' . str_replace('/', "\\/", $signature) . '/i', $_SERVER['HTTP_USER_AGENT'])) {
 					$trace = new GoogleLogEvent();

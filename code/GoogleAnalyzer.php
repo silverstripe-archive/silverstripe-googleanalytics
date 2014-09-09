@@ -11,6 +11,7 @@ class GoogleAnalyzer extends DataExtension {
 	public static $profile_id;
 	public static $email;
 	public static $password;
+	public static $use_universal_snippet = false;
 
 	private static $has_many = array(
 		'Events' => 'GoogleLogEvent',
@@ -22,7 +23,10 @@ class GoogleAnalyzer extends DataExtension {
 	 */
 	public static function get_sapphire_version() {
 		if(self::$sapphire_version) return self::$sapphire_version;
-		return method_exists('SiteTree', 'nested_urls') ? '2.4' : '2.3';
+
+		if(class_exists('SiteTree')) {
+			return method_exists('SiteTree', 'nested_urls') ? '2.4' : '2.3';
+		}
 	}
 
 	/**
@@ -44,7 +48,9 @@ class GoogleAnalyzer extends DataExtension {
 				self::$password = $password;
 		}
 
-		SiteTree::add_extension('GoogleAnalyzer');
+		if(class_exists('SiteTree')) {
+			SiteTree::add_extension('GoogleAnalyzer');
+		}
 	}
 
 	public function updateCMSFields(FieldList $fields) {
