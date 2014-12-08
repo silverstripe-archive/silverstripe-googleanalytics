@@ -49,7 +49,11 @@ class GoogleLogger extends Extension {
 	}
 
 	public function onAfterInit() {
-		if($this->owner instanceof DevelopmentAdmin || $this->owner instanceof DatabaseAdmin) {
+		if(
+			$this->owner instanceof DevelopmentAdmin ||
+			$this->owner instanceof DatabaseAdmin ||
+			(class_exists('DevBuildController') && $this->owner instanceof DevBuildController)
+		) {
 			return;
 		}
 
