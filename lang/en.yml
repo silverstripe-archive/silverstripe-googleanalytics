@@ -1,15 +1,25 @@
 en:
-    GoogleConfig:
-        CODE: 'Google Analytics Code'
-        PROFILEID: 'Google Analytics Profile ID'
-        PROFILEIDEXPLANATION: 'Hidden in the URL parameter "id" of the "View Report" link inside Google Analytics'
-        EMAIL: 'Google Analytics Email'
-        EMAILEXPLANATION: 'The email address of the Google Analytics account to use'
-        PASSWORD: 'Google Analytics Password'
-        PASSWORDEXPLANATION: 'Password of the Google Analytics account'
-    GoogleAnalyzer:
-        TABTITLE: 'Google Analytics'
-        STATS: 'Stats'
-        PERFORMANCE: 'Performance'
-    GoogleReport:
-        REPORTTITLE: 'Google Analytics'
+  GoogleAnalyzer:
+    PERFORMANCE: Performance
+    STATS: Stats
+    TABTITLE: 'Google Analytics'
+  GoogleCachedQuery:
+    PLURALNAME: 'Google Cached Queries'
+    SINGULARNAME: 'Google Cached Query'
+  GoogleConfig:
+    CODE: 'Google Analytics Code'
+    EMAIL: 'Google Analytics Email'
+    EMAILEXPLANATION: 'The email address of the Google Analytics account to use'
+    PASSWORD: 'Google Analytics Password'
+    PASSWORDEXPLANATION: 'The password for the above account'
+    PROFILEID: 'Google Analytics Profile ID'
+    PROFILEIDEXPLANATION: 'Hidden in the URL parameter "id" of the "View Report" link inside Google Analytics'
+  GoogleLogEvent:
+    PLURALNAME: 'Google Log Events'
+    SINGULARNAME: 'Google Log Event'
+  GooglePerformanceChart:
+    CHOOSEMETRICS: 'Choose metrics to display'
+    LOADING: loading
+    SHOW: Show
+  GoogleReport:
+    REPORTTITLE: 'Google Analytics'
